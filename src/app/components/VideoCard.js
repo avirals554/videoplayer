@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 const VideoCard = ({ video }) => {
-  const { title, channelName, videoUrl } = video;
+  const { id, title, channelName, videoUrl } = video;
 
   const videoid = (Url) => {
     return Url.split("v=")[1]?.split("&")[0] || Url.split("/").pop();
@@ -28,7 +28,7 @@ const VideoCard = ({ video }) => {
           src={thumbnail}
           alt={title}
           style={{ width: "100%", height: "200px", cursor: "pointer" }}
-          onClick={() => router.push(`/Video/${videoid(videoUrl)}`)} // lowercase "router" and backticks
+          onClick={() => router.push(`/Video/${id}`)} // lowercase "router" and backticks
         />
       )}
 

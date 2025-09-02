@@ -16,7 +16,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-4">
           {/* App Title/Logo */}
           <div className="text-2xl font-bold text-gray-800 dark:text-white">
-            Home kitchen
+            <a href="http://localhost:3000/">video archive </a>
           </div>
 
           {/* Search Bar */}
