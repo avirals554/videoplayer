@@ -1,5 +1,5 @@
-import Videos from "./data/Videos.json";
-
+import Videos from "./data/VideoData.json";
+import CommentSection from "@/app/components/comment_section";
 export default function VideoPage({ params }) {
   const videoId = parseInt(params.id, 10);
 
@@ -69,6 +69,16 @@ export default function VideoPage({ params }) {
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
             Description
           </h2>
+          <p
+            className="text-gray-700 dark:text-gray-300 leading-relaxed"
+            suppressHydrationWarning
+          >
+            {" "}
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              Comment section
+            </h3>
+          </p>
+          <CommentSection />
           <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
             {video.description || "No description available."}
           </p>

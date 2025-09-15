@@ -3,7 +3,9 @@ import VideoCard from "./VideoCard";
 function VideoGrid({ videos }) {
   return (
     <div>
-      <h1>My Videos</h1>
+      <h1 className="text-4xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-black mb-6">
+        My Videos
+      </h1>
       <div
         style={{
           display: "grid",
