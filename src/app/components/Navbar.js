@@ -1,35 +1,69 @@
 "use client";
-import { useTheme } from "next-themes";
 
-export default function Navbar() {
-  const { theme, setTheme } = useTheme();
+import { useState } from "react";
+
+export default function SearchBar() {
+  const [query, setQuery] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Send POST request to FastAPI backend
+      const response = await fetch("http://localhost:8000/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nameoftheyoutuber: query }), // Fixed field name
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Success:", result);
+      alert(`Fetched ${result.videos_count} videos successfully!`);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Error sending request. Check console for details.");
+    }
+  };
 
   return (
-    <nav className="bg-white/80 opacity-100 dark:bg-gray-900/80 shadow-md sticky top-0 z-10">
-      <div className="container mx-auto px-4 flex justify-between items-center py-4">
-        {/* Left Section: Logo + Search */}
-        <div className="flex items-center space-x-6">
-          {/* Logo */}
-          <div className="text-2xl font-bold text-gray-800 dark:text-white">
-            <a href="/">video archive</a>
-          </div>
-
-          {/* Search Bar */}
-          <input
-            type="text"
-            placeholder="Search videos..."
-            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Toggle Button */}
-        <button
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          className="px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200"
-        >
-          {theme === "dark" ? "☀️ Light" : "🌙 Dark"}
-        </button>
-      </div>
-    </nav>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: "flex", gap: "10px", margin: "20px" }}
+    >
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Enter YouTube channel name (e.g., TomScottGo)"
+        style={{
+          padding: "10px",
+          fontSize: "16px",
+          border: "1px solid #ccc",
+          borderRadius: "4px",
+          minWidth: "300px",
+        }}
+        required
+      />
+      <button
+        type="submit"
+        style={{
+          padding: "10px 20px",
+          fontSize: "16px",
+          backgroundColor: "#0070f3",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer",
+        }}
+      >
+        Fetch Videos
+      </button>
+    </form>
   );
 }

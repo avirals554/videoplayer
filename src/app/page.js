@@ -2,6 +2,7 @@
 import React from "react";
 import VideoGrid from "./components/VideoGrid";
 import VideoData from "./data/VideoData.json";
+import id from "./data/ids2.json";
 import background_image from "./data/background_imgae.png";
 export default function HomePage() {
   return (
@@ -25,7 +26,7 @@ export default function HomePage() {
 
         {/* Video Grid */}
         <div className="relative">
-          <VideoGrid videos={VideoData} />
+          <VideoGrid videos={id} />
         </div>
       </div>
     </div>
