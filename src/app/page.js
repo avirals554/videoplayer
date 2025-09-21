@@ -17,7 +17,7 @@ export default function HomePage() {
         {/* Header Section */}
         <header className="text-center mb-20">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
-            My Videos search git branch
+            My Videos
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-black-400 max-w-2xl mx-auto leading-relaxed">
             Discover amazing content from our curated collection
