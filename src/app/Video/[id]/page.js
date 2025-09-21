@@ -1,7 +1,7 @@
-import Video from "./data/videos.json";
+import Video from "./data/videos2.json";
 import CommentSection from "@/app/components/comment_section";
 export default function VideoPage({ params }) {
-  const videoId = parseInt(params.id, 10);
+  const videoId = params.id;
 
   function getVideoById(id) {
     return Video.find((v) => v.id === id) || null;
